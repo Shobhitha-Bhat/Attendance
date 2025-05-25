@@ -64,7 +64,7 @@ let studentSchema = new mongoose.Schema({
     usn:{type:String},
     name:{type:String},
     stmail:{type:String},
-    extracurricular:{type:[String]}
+    section:{type:String}
 })
 
 let enrolledsubSchema=new mongoose.Schema({
