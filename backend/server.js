@@ -3,12 +3,17 @@ import mongoose from "mongoose";
 import cors from "cors"
 // const twilio = require('twilio');
 import twilio from 'twilio';
+import dotenv from 'dotenv';
+dotenv.config();
+
+
 const port = 8000
 const app = express() //fetch express functionality
 app.use(cors())
 app.use(express.json())
-//twilio credentials
-const client = new twilio(accountSid, authToken);
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
+const client = twilio(accountSid, authToken);
 
 //database connectivity
 mongoose.connect('mongodb+srv://shobhitha_bhat:shobiacon2208@cluster0.uugyuwo.mongodb.net/MiniProject')

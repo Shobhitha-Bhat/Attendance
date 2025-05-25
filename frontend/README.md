@@ -48,6 +48,9 @@ if error or warning
         ```npm intall moment```
         ```npm install moment-timezone```
 
+7. Maintaining Twilio Credentials in .env file
+        ```npm install dotenv```
+
 ============================================================================
 
 ## Running Frontend and Backend
