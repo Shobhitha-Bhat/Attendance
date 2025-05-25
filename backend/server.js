@@ -79,6 +79,11 @@ let subjectSchema = new mongoose.Schema({
     fId:{type:String}
 })
 
+let sectionSchema = new mongoose.Schema({
+    secname:{type:String},
+    classFacultyId:{type:String}
+})
+
 //create Model for Schema
 
 let userModel1 = new mongoose.model('Faculty', facultySchema )
@@ -88,7 +93,7 @@ let FacultyMsgModel = new mongoose.model('FacultyMessage',facultymessageSchema)
 let student = new mongoose.model('Student',studentSchema)
 let enrolledSubjectsSchema = new mongoose.model('EnrolledSubject',enrolledsubSchema)
 let subjectmodel = new mongoose.model('Subjects',subjectSchema)
-
+let sectionmodel = new mongoose.model('Sections',sectionSchema)
 //async-await : used while dealing with databases
 let createFaculty = async function(req, res){
     let {fname,femail,fpassword,facultyid} = req.body; //fetching request from postman body
