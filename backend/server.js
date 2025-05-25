@@ -74,6 +74,11 @@ let enrolledsubSchema=new mongoose.Schema({
     attendance:{type:Number}
 })
 
+let subjectSchema = new mongoose.Schema({
+    subname:{type:String},
+    fId:{type:String}
+})
+
 //create Model for Schema
 
 let userModel1 = new mongoose.model('Faculty', facultySchema )
@@ -82,6 +87,7 @@ let ParentMsgModel = new mongoose.model('ParentMessage',parentmessageSchema)
 let FacultyMsgModel = new mongoose.model('FacultyMessage',facultymessageSchema)
 let student = new mongoose.model('Student',studentSchema)
 let enrolledSubjectsSchema = new mongoose.model('EnrolledSubject',enrolledsubSchema)
+let subjectmodel = new mongoose.model('Subjects',subjectSchema)
 
 //async-await : used while dealing with databases
 let createFaculty = async function(req, res){
