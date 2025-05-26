@@ -1,12 +1,10 @@
 import React from "react";
 
-const AcademicsPage = () => {
-  return (
-    <div className='m-5'>
-      <h1>Academics</h1>
-      <p>Details about academic performance, courses, or subjects can go here.</p>
-    </div>
-  );
-};
+export const sectionoption = ()=>{
+    // check if the facultyid for the session is a classteacher of any class
+    
+    // if yes fetch all those sections whom he/she is a class teacher..
 
-export default AcademicsPage;
+    // these sections will then be rendered as buttons, 
+    // on clicking which will be redirected to ia attendace of that section...
+}
