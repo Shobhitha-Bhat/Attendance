@@ -18,7 +18,7 @@ import { MarkAttendance } from "./SubComponents/MarkAttendance.js";
 import NotifyFacultyPage from './SubComponents/NotifyFacultyPage.js'
 import NotifyFacultyCard from './SubComponents/NotifyFacultyCard.js'
 import { FacultyInbox } from "./SubComponents/FacultyInbox.js";
-
+import { FacultyProvider } from "./contexts/FacultyContext.js";
 
 
 
@@ -87,6 +87,8 @@ useEffect(()=>{
 
 
   return (
+    <FacultyProvider>
+
     <BrowserRouter>
     {/* <h1>{data.msg}</h1>
     <p>{JSON.stringify(data.data)}</p> */}
@@ -95,16 +97,16 @@ useEffect(()=>{
         <Route
           path="/"
           element={
-              <Login
-                userType={userType}
-                userLogin={userLogin}
-                setUserData={setUserData}
-              />
-              
-          
-          
+            <Login
+            userType={userType}
+            userLogin={userLogin}
+            setUserData={setUserData}
+            />
+            
+            
+            
           }
-        />
+          />
         <Route
           path="/parentDashboard"
           element={
@@ -114,7 +116,7 @@ useEffect(()=>{
               <Navigate to="/" />
             )
           }
-        />
+          />
         <Route
           path="/facultyDashboard"
           element={
@@ -124,7 +126,7 @@ useEffect(()=>{
               <Navigate to="/" />
             )
           }
-        />
+          />
       
       <Route path="/notifyparentcard" element={<NotifyParentCard logout={logout}/>} />
       <Route path="/notifyfacultycard" element={<NotifyFacultyCard logout={logout}/>} />
@@ -146,6 +148,7 @@ useEffect(()=>{
                 setUserData={setUserData} />}/> */}
       </Routes>
     </BrowserRouter>
+                </FacultyProvider>
   );
 }
 
