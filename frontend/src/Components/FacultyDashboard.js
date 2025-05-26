@@ -55,7 +55,7 @@ export const FacultyDashboard = ({logout}) => {
             variant="info"
             size="lg"
             className="mr-5"
-            onClick={() => navigate("/iaattendance")}
+            onClick={() => navigate("/selectsection")}
           >
             IA / Attendance
           </Button>
