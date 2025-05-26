@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Container, Button, Form, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios"
-
+import { FacultyContext } from "../contexts/FacultyContext";
+import { useContext } from "react";
 
 
 
 export const Login = ({ userType, userLogin, setUserData }) => {
   const navigate = useNavigate();
-
+  const {setFacultyId} = useContext(FacultyContext);
   const [fpassword, setfpassword] = useState("");
   const [facultyid, setfacultyid] = useState("");
   const [usn, setusn] = useState("");
@@ -28,6 +29,7 @@ export const Login = ({ userType, userLogin, setUserData }) => {
           })
           if(entereddata.data && entereddata.data.length>0){
             alert("Login Successful")
+            setFacultyId(facultyid);
 
           }else{
             alert("Invalid Login Credentials.")

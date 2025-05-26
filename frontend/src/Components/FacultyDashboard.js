@@ -8,6 +8,8 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 // import StudentProfileCard from '../SubComponents/StudentProfileCard';
 import NotifyParentCard from "../SubComponents/NotifyParentCard";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { FacultyContext } from "../contexts/FacultyContext";
 
 export const FacultyDashboard = ({logout}) => {
   const navigate = useNavigate();
@@ -18,8 +20,11 @@ export const FacultyDashboard = ({logout}) => {
   //   navigate('/')
   // };
 
-  const user = JSON.parse(localStorage.getItem("LoginData"));
-  const username = user?.facultyid? user.facultyid : "faculty";
+  // const user = JSON.parse(localStorage.getItem("LoginData"));
+  // const username = user?.facultyid? user.facultyid : "faculty";
+
+  const {facultyId} = useContext(FacultyContext)
+  const username = facultyId || "faculty";
   return (
     <>
       <Header logout={logout} />
