@@ -141,7 +141,7 @@ useEffect(()=>{
         <Route path="/parentinbox" element={<ParentInbox/>}/>
         <Route path="/facultyinbox" element={<FacultyInbox/>}/>
         <Route path="/selectsection" element={<SectionOption logout={logout}/> }/>
-        <Route path="/iaattendance" element={<IAAttendance />}/>
+        <Route path="/iaattendance" element={<IAAttendance logout={logout}/>}/>
         <Route path="/markattendance" element={<MarkAttendance/>}/>
         <Route path="/sectionbuttons" element={<SectionButtons logout={logout}/>}/>
           {/* <Route path="/login" element={<Login userType={userType}

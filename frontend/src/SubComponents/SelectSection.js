@@ -46,7 +46,7 @@ useEffect(()=>{
 
     const handleSectionClick=(section)=>{
         setSecname(section.secname)  //cz from backend we get the entire document ...from there we use only secname
-        navigate("/markattendance")
+        navigate("/iaattendance")
     }
     return(
     <>

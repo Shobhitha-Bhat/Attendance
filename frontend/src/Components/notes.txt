@@ -5,3 +5,40 @@ useEffect(() => {
       setFacultyId(savedId);
     }
   }, []);
+
+  =============================================
+
+python script for generating marks info for students
+import json
+import random
+
+subjects = ["Software Engineering", "MongoDB", "SSCD", "CGIP", "BlockChain", "Open_Elective"]
+
+data = []
+for i in range(1, 101):
+    usn = f"4SF21CS{i:03d}"
+    subject_status = []
+    for sub in subjects:
+        marks = random.randint(35, 100)
+        total_classes = 40
+        classes_attended = random.randint(0, total_classes)
+        attendance_percentage = round((classes_attended / total_classes) * 100, 2)
+        subject_status.append({
+            "subname": sub,
+            "marks": marks,
+            "totalClasses": total_classes,
+            "classesAttended": classes_attended,
+            "attendance_percentage": attendance_percentage
+        })
+    data.append({
+        "usn": usn,
+        "subject_status": subject_status
+    })
+
+# Save the insertMany command to a file
+insert_command = f"db.student_marks.insertMany({json.dumps(data, indent=4)});"
+
+with open("mongo_insert_students.js", "w") as file:
+    file.write(insert_command)
+
+print("✅ Mongo insert command saved to mongo_insert_students.js")

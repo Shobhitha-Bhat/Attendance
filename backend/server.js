@@ -84,16 +84,28 @@ let sectionSchema = new mongoose.Schema({
     classFacultyId:{type:String}
 })
 
-let attendSchema = new mongoose.Schema({
-    stUSN:{type:String},
-    subName:{type:String},
+// let attendSchema = new mongoose.Schema({
+//     stUSN:{type:String},
+//     subName:{type:String},
+//     marks:{type:Number},
+//     totalClasses:{type:Number},
+//     classesAttended:{type:Number},
+//     percentage:{type:Number}
+// })
+
+let subjectstatus = new mongoose.Schema({
+    subname:{type:String},
     marks:{type:Number},
     totalClasses:{type:Number},
     classesAttended:{type:Number},
-    percentage:{type:Number}
+    attendance_percentage:{type:Number}
 })
-//create Model for Schema
+let student_marks_attendance = new mongoose.Schema({
+    usn:{type:String},
+    subject_status:[subjectstatus]
+})
 
+//create Models for Schema
 let userModel1 = new mongoose.model('Faculty', facultySchema )
 let userModel2 = new mongoose.model('Parent', parentSchema )
 let ParentMsgModel = new mongoose.model('ParentMessage',parentmessageSchema)
@@ -102,8 +114,8 @@ let student = new mongoose.model('Student',studentSchema)
 // let enrolledSubjectsSchema = new mongoose.model('EnrolledSubject',enrolledsubSchema)
 let subjectmodel = new mongoose.model('Subjects',subjectSchema)
 let sectionmodel = new mongoose.model('Sections',sectionSchema)
-let attendModel = new mongoose.model('Attends',attendSchema)
-
+// let attendModel = new mongoose.model('Attends',attendSchema)
+let studentmarks = new mongoose.model('Student_marks',student_marks_attendance)
 
 //async-await : used while dealing with databases
 let createFaculty = async function(req, res){
@@ -200,7 +212,8 @@ let getfacultymessages=async function(req,res){
 }
 
 let getiaAttendance=async function(req,res){
-    let data=await enrolledSubjectsSchema.find()
+    let section_name = req.query.section;
+    let data=await student.find({secname:section_name})
     console.log(data)
     res.status(200).json(data)
 }
