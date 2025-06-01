@@ -67,12 +67,12 @@ let studentSchema = new mongoose.Schema({
     section:{type:String}
 })
 
-let enrolledsubSchema=new mongoose.Schema({
-    usn:{type:String},
-    enrolledsubjects:{type:[String]},
-    marks:{type:[Number]},
-    attendance:{type:Number}
-})
+// let enrolledsubSchema=new mongoose.Schema({
+//     usn:{type:String},
+//     enrolledsubjects:{type:[String]},
+//     marks:{type:[Number]},
+//     attendance:{type:Number}
+// })
 
 let subjectSchema = new mongoose.Schema({
     subname:{type:String},
@@ -99,7 +99,7 @@ let userModel2 = new mongoose.model('Parent', parentSchema )
 let ParentMsgModel = new mongoose.model('ParentMessage',parentmessageSchema)
 let FacultyMsgModel = new mongoose.model('FacultyMessage',facultymessageSchema)
 let student = new mongoose.model('Student',studentSchema)
-let enrolledSubjectsSchema = new mongoose.model('EnrolledSubject',enrolledsubSchema)
+// let enrolledSubjectsSchema = new mongoose.model('EnrolledSubject',enrolledsubSchema)
 let subjectmodel = new mongoose.model('Subjects',subjectSchema)
 let sectionmodel = new mongoose.model('Sections',sectionSchema)
 let attendModel = new mongoose.model('Attends',attendSchema)
