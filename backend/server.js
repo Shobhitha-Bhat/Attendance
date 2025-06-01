@@ -252,6 +252,21 @@ try {
 }
 
 
+const fetchSections = async function(req,res){
+    const facultyId = req.query.facultyId;
+    try {
+        const retrieved_sections = await sectionmodel.find({ classFacultyId: facultyId });
+        console.log(retrieved_sections);
+        res.status(200).json(retrieved_sections);
+    } catch (err) {
+        console.error("Error fetching sections:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
+
+
+
+// ===================== //
 app.post('/createfaculty', createFaculty);
 app.post('/createparent', createParent);
 // app.get('/getfacultydata', getFaculty);
@@ -271,6 +286,9 @@ app.get('/getattendancesheet',getAttendanceSheet)
 app.post('/classAttendance',classAttendance)
 
 app.post('/sendclassattendance',sendClassAttendance)
+app.get('/fetchsections',fetchSections);
+
+
 
 //listen functionality
 app.listen(port, ()=>{

@@ -19,7 +19,7 @@ import NotifyFacultyPage from './SubComponents/NotifyFacultyPage.js'
 import NotifyFacultyCard from './SubComponents/NotifyFacultyCard.js'
 import { FacultyInbox } from "./SubComponents/FacultyInbox.js";
 import { FacultyProvider } from "./contexts/FacultyContext.js";
-import Selectsection from './SubComponents/SelectSection.js'
+import {SectionOption} from "./SubComponents/SelectSection.js"
 
 
 
@@ -140,7 +140,7 @@ useEffect(()=>{
         <Route path="/signup" element={<Signup  />}/>
         <Route path="/parentinbox" element={<ParentInbox/>}/>
         <Route path="/facultyinbox" element={<FacultyInbox/>}/>
-        <Route path="/selectsection" element={<Selectsection/> }/>
+        <Route path="/selectsection" element={<SectionOption/> }/>
         <Route path="/iaattendance" element={<IAAttendance/>}/>
         <Route path="/markattendance" element={<MarkAttendance/>}/>
           {/* <Route path="/login" element={<Login userType={userType}
