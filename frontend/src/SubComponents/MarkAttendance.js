@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext } from "react";
 import { useEffect, useState } from "react";
 import { Table, Spinner } from "react-bootstrap";
 import Axios from "axios";
@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
 import Row from "react-bootstrap/Row";
+import { FacultyContext } from "../contexts/FacultyContext";
 
 export const MarkAttendance = () => {
   const [sheet, setsheet] = useState([]);
@@ -14,11 +15,13 @@ export const MarkAttendance = () => {
   const [formHidden, setFormHidden] = useState({}); //has list of students' checkbox states
   const [isInitialized, setIsInitialized] = useState(false);
   const [uusn,setuusn]=useState('')
+  const {facultyId} = useContext(FacultyContext)
+  const {secname} = useContext(FacultyContext)
 
-
+//Get attendance sheet of a particular section
   const getattendancesheet = async () => {
     const response = await Axios.get(
-      "http://localhost:8000/getattendancesheet"
+      `http://localhost:8000/getattendancesheet?section=${secname}`
     );
     setsheet(response.data);
     setuusn(response.data.usn)
@@ -99,7 +102,7 @@ useEffect(() => {
 
   return (
     <>
-      <h3 className="m-5">Attendance Sheet</h3>
+      <h3 className="m-5">Attendance Sheet - {secname}</h3>
       <div className="m-5">
         <Form onSubmit={sendAttendanceMessage}>
           <Table bordered hover responsive>

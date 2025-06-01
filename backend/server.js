@@ -206,9 +206,10 @@ let getiaAttendance=async function(req,res){
 }
 
 let getAttendanceSheet = async function(req,res){
-    let data=await student.find({},'usn name')
-    console.log(data)
-    res.status(200).json(data)
+    let section_name = req.query.section
+    let retrieved_students=await student.find({secname: section_name},'usn name')
+    console.log(retrieved_students)
+    res.status(200).json(retrieved_students)
 }
 
 let classAttendance=async function(req,res){
@@ -264,6 +265,11 @@ const fetchSections = async function(req,res){
     }
 }
 
+const fetchAllSections=async(req,res)=>{
+    let fetched_sections = await sectionmodel.find().sort({secname:1});
+    console.log(fetched_sections)
+    res.status(200).json(fetched_sections);
+}
 
 
 // ===================== //
@@ -287,7 +293,7 @@ app.post('/classAttendance',classAttendance)
 
 app.post('/sendclassattendance',sendClassAttendance)
 app.get('/fetchsections',fetchSections);
-
+app.get('/fetchallsections',fetchAllSections);
 
 
 //listen functionality

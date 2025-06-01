@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 export const SectionOption =({logout})=>{
     const navigate = useNavigate();
-    const {facultyId} = useContext(FacultyContext)
+    const {facultyId,setSecname} = useContext(FacultyContext)
+    // const {secname} = useContext(FacultyContext)
     const[sections,setsections]=useState([]);
     // check if the facultyid for the session is a classteacher of any class
     // if yes fetch all those sections whom he/she is a class teacher..
@@ -43,7 +44,8 @@ useEffect(()=>{
     // these sections will then be rendered as buttons, 
     // on clicking which will be redirected to ia attendace of that section...
 
-    const handleSectionClick=()=>{
+    const handleSectionClick=(section)=>{
+        setSecname(section.secname)  //cz from backend we get the entire document ...from there we use only secname
         navigate("/markattendance")
     }
     return(

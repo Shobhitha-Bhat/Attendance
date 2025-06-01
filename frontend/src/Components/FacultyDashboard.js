@@ -47,7 +47,7 @@ export const FacultyDashboard = ({logout}) => {
             variant="danger"
             size="lg"
             className="mr-5"
-            onClick={() => navigate("/markattendance")}
+            onClick={() => navigate("/sectionbuttons")}
           >
             Mark Attendance
           </Button>
