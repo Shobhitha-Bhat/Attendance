@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { FacultyContext } from "../contexts/FacultyContext";
 
-export const MarkAttendance = () => {
+export const MarkAttendance = ({logout}) => {
   const [sheet, setsheet] = useState([]);
   const [loading, setloading] = useState(true);
   const [formHidden, setFormHidden] = useState({}); //has list of students' checkbox states
