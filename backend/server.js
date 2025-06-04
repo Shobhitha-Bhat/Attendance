@@ -211,7 +211,7 @@ let getfacultymessages=async function(req,res){
     res.status(200).json({msg : "All Inbox messages", data : data})
 }
 
-let getiaAttendance=async function(req,res){
+let getStudents=async function(req,res){
     let section_name = req.query.section;
     let data=await student.find({secname:section_name})
     console.log(data)
@@ -298,7 +298,7 @@ app.post('/addnewfacultymessage',createFacultyMessage)
 app.get('/getparentmessages',getparentmessages)
 app.get('/getfacultymessages',getfacultymessages)
 
-app.get('/getiaattendance',getiaAttendance)
+app.get('/getstudents',getStudents)
 
 app.get('/getattendancesheet',getAttendanceSheet)
 

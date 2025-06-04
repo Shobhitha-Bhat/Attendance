@@ -11,16 +11,16 @@ export const IAAttendance = ({logout}) => {
   const {secname} = useContext(FacultyContext)
 
 useEffect(()=>{
-  const getiaattendance=async()=>{
+  const getstudents=async()=>{
     try{
-      const response = await Axios.get(`http://localhost:8000/getiaAttendance?section=${secname}`)
+      const response = await Axios.get(`http://localhost:8000/getstudents?section=${secname}`)
       setiadata(response.data)
     }catch{
       console.log("Error");
       setiadata([])
     }
 }
-  getiaattendance()
+  getstudents()
   },[])
 
   return (
