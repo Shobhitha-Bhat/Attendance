@@ -52,7 +52,7 @@ export const IADasboard = ({logout}) => {
             variant="success"
             size="lg"
             className="mr-5"
-            
+            onClick={() => navigate("/subjectdashboard")}
           >
             Subjectwise Marks
           </Button>
