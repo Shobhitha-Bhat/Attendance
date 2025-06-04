@@ -64,7 +64,7 @@ let studentSchema = new mongoose.Schema({
     usn:{type:String},
     name:{type:String},
     stmail:{type:String},
-    section:{type:String}
+    secname:{type:String}
 })
 
 // let enrolledsubSchema=new mongoose.Schema({
@@ -284,6 +284,68 @@ const fetchAllSections=async(req,res)=>{
     res.status(200).json(fetched_sections);
 }
 
+const getAllSubjects = async(req,res)=>{
+    let fetched_subjects = await subjectmodel.find();
+    console.log(fetched_subjects);
+    res.status(200).json(fetched_subjects);
+}
+
+
+const getSubjectFaculty = async(req,res)=>{
+    let subjName = req.query.subjName;
+    let facid = await subjectmodel.findOne({subname:subjName},{fId:1,_id:0});
+    if(!facid)console.log("error")
+    let facID = facid.fId;
+    let facname = await userModel1.findOne({facultyid:facID},{fname:1,_id:0});
+    if(!facname)console.log("error");
+    res.status(200).json(facname.fname);
+}
+
+const getMarksSheet = async(req,res)=>{
+    let subject = req.query.subjName;
+    let section = req.query.section;
+
+    //get list of student usn's of section 'X'
+    let students_of_a_section = await student.find({secname:section},'usn');
+
+    // if(!students_of_a_section)console.log("error")
+    //     console.log(students_of_a_section);
+
+    //using the usn's fetch the marks of these usn's of a particular subject
+    let student_usns = students_of_a_section.map(student=>student.usn);
+    console.log(student_usns)
+    // let student_marks = await studentmarks.find({usn:{$in:student_usns},subject_status: { $elemMatch: { subname: subject }}});
+    // console.log(student_marks)
+    // res.status(200).json(student_marks);
+    const result = await studentmarks.aggregate([
+            {
+                $match: {
+                    usn: { $in: student_usns }
+                }
+            },
+            {
+                $project: {
+                    usn: 1,
+                    subject_status: {
+                        $filter: {
+                            input: "$subject_status",
+                            as: "sub",
+                            cond: { $eq: ["$$sub.subname", subject] }
+                        }
+                    }
+                }
+            }
+        ]);
+        res.status(200).json(result)
+
+}
+
+const addStudent = async(req,res)=>{
+    const {usn,name,stmail,secname} = req.body;
+    const result = await student.create({usn,name,stmail,secname});
+    res.status(200).json({msg:"A new Message added to DB"})
+}
+
 
 // ===================== //
 app.post('/createfaculty', createFaculty);
@@ -307,7 +369,11 @@ app.post('/classAttendance',classAttendance)
 app.post('/sendclassattendance',sendClassAttendance)
 app.get('/fetchsections',fetchSections);
 app.get('/fetchallsections',fetchAllSections);
+app.get('/getallsubjects',getAllSubjects);
 
+app.get("/getmarksSheet",getMarksSheet);
+app.get('/getsubjectFaculty',getSubjectFaculty);
+app.post('/addstudent',addStudent)
 
 //listen functionality
 app.listen(port, ()=>{

@@ -21,8 +21,9 @@ import { FacultyInbox } from "./SubComponents/FacultyInbox.js";
 import { FacultyProvider } from "./contexts/FacultyContext.js";
 import {SectionOption} from "./SubComponents/SelectSection.js"
 import { SectionButtons } from "./SubComponents/AttendanceSections.js";
-
-
+import { IADasboard } from "./SubComponents/iaattendance_dashboard.js";
+import { Subjects } from "./SubComponents/subject_dashboard.js";
+import { SubjectMarks } from "./SubComponents/Section_Subject_Marks.js";
 
 function App() {
   
@@ -144,6 +145,9 @@ useEffect(()=>{
         <Route path="/iaattendance" element={<IAAttendance logout={logout}/>}/>
         <Route path="/markattendance" element={<MarkAttendance/>}/>
         <Route path="/sectionbuttons" element={<SectionButtons logout={logout}/>}/>
+        <Route path="iaattendance_dashboard" element={<IADasboard logout={logout}/>}/>
+        <Route path="/subjectdashboard" element={<Subjects logout={logout}/>}/>
+        <Route path = "/showsubjectmarks" element={<SubjectMarks logout={logout}/>}/>
           {/* <Route path="/login" element={<Login userType={userType}
                 userLogin={userLogin}
                 setUserData={setUserData} />}/> */}
