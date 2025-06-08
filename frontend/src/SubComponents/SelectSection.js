@@ -51,6 +51,9 @@ useEffect(()=>{
     return(
     <>
           <Header logout={logout} />
+          <h3 className="text-center mt-5 mb-3">
+        Class Supervisor : {facultyId}
+      </h3>
         <Container>
         <div className="d-flex mt-5 justify-content-around ">
           {sections.map((section) => (

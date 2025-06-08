@@ -129,8 +129,8 @@ const resetsheet = () =>{
                 student.subject_status.map((subject, index) => {
                   let rowColor = "";
                   if (viewmode === "overview") {
-                    if (subject.marks < 40) rowColor = "table-danger";
-                    else if (subject.marks < 70) rowColor = "table-warning";
+                    if (subject.marks <= 40) rowColor = "table-danger";
+                    else if (subject.marks > 40 && subject.marks <= 70) rowColor = "table-warning";
                     else rowColor = "table-success";
                   }
 
