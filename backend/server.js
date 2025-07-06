@@ -16,7 +16,7 @@ const authToken = process.env.AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
 //database connectivity
-mongoose.connect('mongodb+srv://shobhitha_bhat:shobiacon2208@cluster0.uugyuwo.mongodb.net/MiniProject')
+mongoose.connect('mongodb+srv://shobhitha_bhat:password@cluster0.uugyuwo.mongodb.net/MiniProject')
 .then(()=>{
     console.log("Database Connected")
 })
